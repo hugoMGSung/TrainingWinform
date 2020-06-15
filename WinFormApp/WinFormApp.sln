@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormApp", "WinFormApp.csproj", "{17BAA0F6-6968-4A90-9583-BE0BD308B9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockApp", "..\ClockApp\ClockApp.csproj", "{F4BC1E51-514E-47B7-BC86-96F64B22134A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17BAA0F6-6968-4A90-9583-BE0BD308B9E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17BAA0F6-6968-4A90-9583-BE0BD308B9E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17BAA0F6-6968-4A90-9583-BE0BD308B9E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17BAA0F6-6968-4A90-9583-BE0BD308B9E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BC1E51-514E-47B7-BC86-96F64B22134A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BC1E51-514E-47B7-BC86-96F64B22134A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BC1E51-514E-47B7-BC86-96F64B22134A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BC1E51-514E-47B7-BC86-96F64B22134A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC858609-1CF4-4C81-9560-5C37B4FC6320}
+	EndGlobalSection
+EndGlobal
