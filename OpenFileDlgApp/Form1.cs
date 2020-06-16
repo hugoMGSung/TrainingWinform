@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LoginApp
+namespace OpenFileDlgApp
 {
     public partial class Form1 : Form
     {
@@ -19,13 +19,10 @@ namespace LoginApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = $"ID : {textBox1.Text} \r\nPASSWORD : {textBox2.Text}";
-
-            if ((textBox1.Text.ToUpper() == "ADMIN") 
-                && (textBox2.Text.ToUpper() == "P@SSW0RD!"))
-            {
-                MessageBox.Show("관리자로그인!!");
-            }
+            openFileDialog1.FileName = "";
+            openFileDialog1.InitialDirectory = "C:\";
+            openFileDialog1.Filter = "모든파일(*.*)|*.*";
+            openFileDialog1.ShowDialog();
         }
     }
 }

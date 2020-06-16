@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LoginApp
+namespace ModalDlgApp
 {
     public partial class Form1 : Form
     {
@@ -19,13 +19,12 @@ namespace LoginApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = $"ID : {textBox1.Text} \r\nPASSWORD : {textBox2.Text}";
+            //Form2 form = new Form2();
+            ////form.ShowDialog(); // 모달
+            //form.Show();  // 모달리스
 
-            if ((textBox1.Text.ToUpper() == "ADMIN") 
-                && (textBox2.Text.ToUpper() == "P@SSW0RD!"))
-            {
-                MessageBox.Show("관리자로그인!!");
-            }
+            MessageBox.Show("텍스트입니다", "제목", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
         }
     }
 }

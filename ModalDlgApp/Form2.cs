@@ -8,24 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LoginApp
+namespace ModalDlgApp
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = $"ID : {textBox1.Text} \r\nPASSWORD : {textBox2.Text}";
-
-            if ((textBox1.Text.ToUpper() == "ADMIN") 
-                && (textBox2.Text.ToUpper() == "P@SSW0RD!"))
-            {
-                MessageBox.Show("관리자로그인!!");
-            }
+            Close();
         }
     }
 }
