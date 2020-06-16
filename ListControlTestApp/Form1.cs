@@ -30,15 +30,32 @@ namespace ListControlTestApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > -1)
+            List<int> selIndexes = new List<int>();
+
+            foreach (var item in listBox1.SelectedIndices)
             {
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);                
+                selIndexes.Add((int)item);
+            }
+
+            selIndexes.Reverse();
+
+            foreach (var item in selIndexes)
+            {
+                listBox1.Items.RemoveAt(item);
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             label2.Text = comboBox1.SelectedItem.ToString();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                button1_Click(sender, new EventArgs());
+            }
         }
     }
 }
