@@ -10,7 +10,7 @@ namespace BookRentalApp
 {
     public partial class LoginForm : MetroFramework.Forms.MetroForm
     {
-        string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
+        string strConn = "Data Source=127.0.0.1;Initial Catalog=BookRentalshopDB;Persist Security Info=True;User ID=sa;Password=p@ssw0rd!";
 
         public LoginForm()
         {
