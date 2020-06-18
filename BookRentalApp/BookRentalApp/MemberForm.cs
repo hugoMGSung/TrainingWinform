@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace BookRentalApp
 {
-    public partial class DivForm : MetroFramework.Forms.MetroForm
+    public partial class MemberForm : MetroFramework.Forms.MetroForm
     {
         string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
-        public DivForm()
+        public MemberForm()
         {
             InitializeComponent();
         }
@@ -35,22 +35,46 @@ namespace BookRentalApp
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 conn.Open();
-                string strQuery = "SELECT Division, Names FROM divtbl ";
+                string strQuery = "SELECT Idx, Names, Levels, Addr, Mobile, Email FROM membertbl ";
                 SqlCommand cmd = new SqlCommand(strQuery, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(strQuery, conn);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "divtbl");
+                adapter.Fill(ds, "membertbl");
 
                 GrdDivTbl.DataSource = ds;
-                GrdDivTbl.DataMember = "divtbl";
+                GrdDivTbl.DataMember = "membertbl";
             }
 
+
+            SetColumnHeaders();
             mode = "";
+        }
+
+        private void SetColumnHeaders()
+        {
+            DataGridViewColumn column = GrdDivTbl.Columns[0];
+            column.Width = 40;
+            column.HeaderText = "순번";
+            column = GrdDivTbl.Columns[1];
+            column.Width = 110;
+            column.HeaderText = "이름";
+            column = GrdDivTbl.Columns[2];
+            column.Width = 60;
+            column.HeaderText = "등급";
+            column = GrdDivTbl.Columns[3];
+            column.Width = 120;
+            column.HeaderText = "주소";
+            column = GrdDivTbl.Columns[4];
+            column.Width = 100;
+            column.HeaderText = "핸드폰";
+            column = GrdDivTbl.Columns[5];
+            column.Width = 170;
+            column.HeaderText = "이메일";
         }
 
         private void UpdateProcess()
         {
-            if (string.IsNullOrEmpty(TxtDivision.Text) || string.IsNullOrEmpty(TxtNames.Text))
+            if (string.IsNullOrEmpty(TxtIdx.Text) || string.IsNullOrEmpty(TxtNames.Text))
             {
                 MetroMessageBox.Show(this, "빈값은 넣을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -77,7 +101,7 @@ namespace BookRentalApp
                     paramName.Value = (TxtNames.Text);
                     cmd.Parameters.Add(paramName);
                     SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
+                    paramDiv.Value = TxtIdx.Text;
                     cmd.Parameters.Add(paramDiv);
                     
 
@@ -134,7 +158,7 @@ namespace BookRentalApp
                     cmd.Connection = conn;
                     cmd.CommandText = "DELETE divtbl WHERE Division = @division";
                     SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
+                    paramDiv.Value = TxtIdx.Text;
                     cmd.Parameters.Add(paramDiv);
 
 
@@ -153,8 +177,8 @@ namespace BookRentalApp
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
+            TxtIdx.Text = TxtNames.Text = string.Empty;
+            TxtIdx.ReadOnly = false;
             mode = "INSERT";
         }
 
@@ -165,8 +189,8 @@ namespace BookRentalApp
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
+            TxtIdx.Text = TxtNames.Text = string.Empty;
+            TxtIdx.ReadOnly = false;
         }
 
         private void GrdDivTbl_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -174,16 +198,50 @@ namespace BookRentalApp
             if (e.RowIndex > -1)
             {
                 DataGridViewRow data = GrdDivTbl.Rows[e.RowIndex];
-                TxtDivision.Text = data.Cells[0].Value.ToString();
-                TxtDivision.ReadOnly = true;
+                TxtIdx.Text = data.Cells[0].Value.ToString();
+                TxtIdx.ReadOnly = true;
                 TxtNames.Text = data.Cells[1].Value.ToString();
+                CboLevels.Text = data.Cells[2].Value.ToString();
+                TxtAddr.Text = data.Cells[3].Value.ToString();
+                TxtMobile.Text = data.Cells[4].Value.ToString();
+                TxtEmail.Text = data.Cells[5].Value.ToString();
                 mode = "UPDATE";
             }
         }
 
-        private void DivForm_Deactivate(object sender, EventArgs e)
+        private void MemberForm_Deactivate(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

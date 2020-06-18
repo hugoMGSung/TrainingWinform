@@ -28,100 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.TxtUserID = new MetroFramework.Controls.MetroTextBox();
+            this.TxtPassword = new MetroFramework.Controls.MetroTextBox();
+            this.BtnOk = new MetroFramework.Controls.MetroButton();
+            this.BtnCancel = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
-            // textBox1
+            // metroLabel1
             // 
-            this.textBox1.Location = new System.Drawing.Point(223, 62);
-            this.textBox1.MaxLength = 12;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(161, 67);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(21, 19);
+            this.metroLabel1.TabIndex = 4;
+            this.metroLabel1.Text = "ID";
             // 
-            // textBox2
+            // metroLabel2
             // 
-            this.textBox2.Location = new System.Drawing.Point(223, 106);
-            this.textBox2.MaxLength = 20;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '●';
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(119, 96);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(63, 19);
+            this.metroLabel2.TabIndex = 5;
+            this.metroLabel2.Text = "Password";
             // 
-            // label1
+            // TxtUserID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 14);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ID";
             // 
-            // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(133, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 14);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Password";
             // 
-            // button1
+            this.TxtUserID.CustomButton.Image = null;
+            this.TxtUserID.CustomButton.Location = new System.Drawing.Point(115, 1);
+            this.TxtUserID.CustomButton.Name = "";
+            this.TxtUserID.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.TxtUserID.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtUserID.CustomButton.TabIndex = 1;
+            this.TxtUserID.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtUserID.CustomButton.UseSelectable = true;
+            this.TxtUserID.CustomButton.Visible = false;
+            this.TxtUserID.Lines = new string[0];
+            this.TxtUserID.Location = new System.Drawing.Point(188, 63);
+            this.TxtUserID.MaxLength = 32767;
+            this.TxtUserID.Name = "TxtUserID";
+            this.TxtUserID.PasswordChar = '\0';
+            this.TxtUserID.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtUserID.SelectedText = "";
+            this.TxtUserID.SelectionLength = 0;
+            this.TxtUserID.SelectionStart = 0;
+            this.TxtUserID.ShortcutsEnabled = true;
+            this.TxtUserID.Size = new System.Drawing.Size(137, 23);
+            this.TxtUserID.TabIndex = 0;
+            this.TxtUserID.UseSelectable = true;
+            this.TxtUserID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtUserID.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.TxtUserID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUserID_KeyPress);
             // 
-            this.button1.Location = new System.Drawing.Point(121, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 33);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // TxtPassword
             // 
-            // button2
             // 
-            this.button2.Location = new System.Drawing.Point(232, 156);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 33);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // 
+            this.TxtPassword.CustomButton.Image = null;
+            this.TxtPassword.CustomButton.Location = new System.Drawing.Point(115, 1);
+            this.TxtPassword.CustomButton.Name = "";
+            this.TxtPassword.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.TxtPassword.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtPassword.CustomButton.TabIndex = 1;
+            this.TxtPassword.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtPassword.CustomButton.UseSelectable = true;
+            this.TxtPassword.CustomButton.Visible = false;
+            this.TxtPassword.Lines = new string[0];
+            this.TxtPassword.Location = new System.Drawing.Point(188, 92);
+            this.TxtPassword.MaxLength = 32767;
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.PasswordChar = '●';
+            this.TxtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtPassword.SelectedText = "";
+            this.TxtPassword.SelectionLength = 0;
+            this.TxtPassword.SelectionStart = 0;
+            this.TxtPassword.ShortcutsEnabled = true;
+            this.TxtPassword.Size = new System.Drawing.Size(137, 23);
+            this.TxtPassword.TabIndex = 1;
+            this.TxtPassword.UseSelectable = true;
+            this.TxtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPassword_KeyPress);
+            // 
+            // BtnOk
+            // 
+            this.BtnOk.Location = new System.Drawing.Point(128, 140);
+            this.BtnOk.Name = "BtnOk";
+            this.BtnOk.Size = new System.Drawing.Size(86, 35);
+            this.BtnOk.TabIndex = 2;
+            this.BtnOk.Text = "OK";
+            this.BtnOk.UseSelectable = true;
+            this.BtnOk.Click += new System.EventHandler(this.BtnOk_Click);
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.Location = new System.Drawing.Point(220, 140);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(86, 35);
+            this.BtnCancel.TabIndex = 3;
+            this.BtnCancel.Text = "Cancel";
+            this.BtnCancel.UseSelectable = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 258);
+            this.ClientSize = new System.Drawing.Size(445, 198);
             this.ControlBox = false;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.BtnCancel);
+            this.Controls.Add(this.BtnOk);
+            this.Controls.Add(this.TxtPassword);
+            this.Controls.Add(this.TxtUserID);
+            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.metroLabel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroTextBox TxtUserID;
+        private MetroFramework.Controls.MetroTextBox TxtPassword;
+        private MetroFramework.Controls.MetroButton BtnOk;
+        private MetroFramework.Controls.MetroButton BtnCancel;
     }
 }

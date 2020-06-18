@@ -1,24 +1,18 @@
 ﻿using MetroFramework;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace BookRentalApp
 {
-    public partial class DivForm : MetroFramework.Forms.MetroForm
+    public partial class UserForm : MetroFramework.Forms.MetroForm
     {
         string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
-        public DivForm()
+        public UserForm()
         {
             InitializeComponent();
         }
@@ -35,14 +29,14 @@ namespace BookRentalApp
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 conn.Open();
-                string strQuery = "SELECT Division, Names FROM divtbl ";
+                string strQuery = "SELECT id, userID, password  FROM userTbl ";
                 SqlCommand cmd = new SqlCommand(strQuery, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(strQuery, conn);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "divtbl");
+                adapter.Fill(ds, "userTbl");
 
                 GrdDivTbl.DataSource = ds;
-                GrdDivTbl.DataMember = "divtbl";
+                GrdDivTbl.DataMember = "userTbl";
             }
 
             mode = "";
@@ -50,7 +44,7 @@ namespace BookRentalApp
 
         private void UpdateProcess()
         {
-            if (string.IsNullOrEmpty(TxtDivision.Text) || string.IsNullOrEmpty(TxtNames.Text))
+            if (string.IsNullOrEmpty(TxtId.Text) || string.IsNullOrEmpty(TxtUserId.Text) || string.IsNullOrEmpty(TxtPassword.Text))
             {
                 MetroMessageBox.Show(this, "빈값은 넣을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -66,20 +60,30 @@ namespace BookRentalApp
 
                     if (mode == "UPDATE")
                     {
-                        cmd.CommandText = "UPDATE divtbl SET Names = @names WHERE Division = @division";
+                        cmd.CommandText = "UPDATE userTbl SET " +
+                                          "       userID = @userID, " +
+                                          "       password = @password " +
+                                          " WHERE id = @id";
                     }
                     else if (mode == "INSERT")
                     {
-                        cmd.CommandText = "INSERT INTO divtbl VALUES (@division, @names)";
+                        cmd.CommandText = "INSERT INTO userTbl (userID, password) VALUES (@userID, @password)";
                     }
 
-                    SqlParameter paramName = new SqlParameter("@names", SqlDbType.NVarChar, 45);
-                    paramName.Value = (TxtNames.Text);
-                    cmd.Parameters.Add(paramName);
-                    SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
-                    cmd.Parameters.Add(paramDiv);
-                    
+                    SqlParameter parmUserID = new SqlParameter("@userID", SqlDbType.VarChar, 12);
+                    parmUserID.Value = TxtUserId.Text;
+                    cmd.Parameters.Add(parmUserID);
+                    SqlParameter parmPass = new SqlParameter("@password", SqlDbType.VarChar);
+                    string strTemp = TxtPassword.Text;
+                    var mdHash = MD5.Create();
+                    var passResult = Commons.GetMd5Hash(mdHash, strTemp);
+                    parmPass.Value = passResult;
+                    cmd.Parameters.Add(parmPass);
+
+                    SqlParameter id = new SqlParameter("@id", SqlDbType.Int);
+                    id.Value = TxtId.Text;
+                    cmd.Parameters.Add(id);
+
 
                     cmd.ExecuteNonQuery();
                 }
@@ -98,7 +102,7 @@ namespace BookRentalApp
         {
             if (e.KeyChar == 13)
             {
-                TxtNames.Focus();
+                TxtUserId.Focus();
             }
         }
 
@@ -132,9 +136,9 @@ namespace BookRentalApp
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "DELETE divtbl WHERE Division = @division";
-                    SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
+                    cmd.CommandText = "DELETE userTbl WHERE id = @id";
+                    SqlParameter paramDiv = new SqlParameter("@id", SqlDbType.Int);
+                    paramDiv.Value = TxtId.Text;
                     cmd.Parameters.Add(paramDiv);
 
 
@@ -153,8 +157,8 @@ namespace BookRentalApp
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
+            TxtId.Text = TxtUserId.Text = string.Empty;
+            TxtId.ReadOnly = false;
             mode = "INSERT";
         }
 
@@ -165,8 +169,8 @@ namespace BookRentalApp
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
+            TxtId.Text = TxtUserId.Text = string.Empty;
+            TxtId.ReadOnly = false;
         }
 
         private void GrdDivTbl_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -174,9 +178,10 @@ namespace BookRentalApp
             if (e.RowIndex > -1)
             {
                 DataGridViewRow data = GrdDivTbl.Rows[e.RowIndex];
-                TxtDivision.Text = data.Cells[0].Value.ToString();
-                TxtDivision.ReadOnly = true;
-                TxtNames.Text = data.Cells[1].Value.ToString();
+                TxtId.Text = data.Cells[0].Value.ToString();
+                TxtId.ReadOnly = true;
+                TxtUserId.Text = data.Cells[1].Value.ToString();
+                TxtPassword.Text = data.Cells[2].Value.ToString();
                 mode = "UPDATE";
             }
         }

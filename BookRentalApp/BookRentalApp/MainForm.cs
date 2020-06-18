@@ -24,12 +24,20 @@ namespace BookRentalApp
 
         private void MnuItemCodeMng_Click(object sender, EventArgs e)
         {
-            DivForm divForm = new DivForm();
-            divForm.MdiParent = this;
-            divForm.Text = "구분코드 관리";
-            divForm.Dock = DockStyle.Fill;
-            divForm.Show();
-            divForm.WindowState = FormWindowState.Maximized;
+            DivForm form = new DivForm();
+            form.MdiParent = this;
+            form.Text = "구분코드관리";
+            form.Dock = DockStyle.Fill;
+
+            try
+            {
+                form.Show();
+                form.WindowState = FormWindowState.Maximized;
+            }
+            catch (Exception)
+            {
+            }
+            
         }
 
         private void MainForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
@@ -42,6 +50,66 @@ namespace BookRentalApp
             } else
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void MnuItemMemerMng_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MemberForm form = new MemberForm();
+                form.MdiParent = this;
+                form.Text = "회원관리";
+                form.Dock = DockStyle.Fill;
+                form.Show();
+                form.WindowState = FormWindowState.Maximized;
+            }
+            catch (Exception)
+            {
+            }
+            
+        }
+
+        private void MnuItemRentalMng_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RentalForm form = new RentalForm();
+                form.MdiParent = this;
+                form.Text = "대여관리";
+                form.Dock = DockStyle.Fill;
+                form.Show();
+                form.WindowState = FormWindowState.Maximized;
+            }
+            catch (Exception)
+            {
+            }
+            
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            LblDisplayUserID.Text = Commons.USERID;
+        }
+
+        private void a(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MnuItemLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UserForm form = new UserForm();
+                form.MdiParent = this;
+                form.Text = "사용자관리";
+                form.Dock = DockStyle.Fill;
+                form.Show();
+                form.WindowState = FormWindowState.Maximized;
+            }
+            catch (Exception)
+            {
             }
         }
     }

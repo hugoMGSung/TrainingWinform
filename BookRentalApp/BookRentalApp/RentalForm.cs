@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace BookRentalApp
 {
-    public partial class DivForm : MetroFramework.Forms.MetroForm
+    public partial class RentalForm : MetroFramework.Forms.MetroForm
     {
         string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
-        public DivForm()
+        public RentalForm()
         {
             InitializeComponent();
         }
@@ -35,14 +35,24 @@ namespace BookRentalApp
             using (SqlConnection conn = new SqlConnection(strConn))
             {
                 conn.Open();
-                string strQuery = "SELECT Division, Names FROM divtbl ";
+                string strQuery = "SELECT r.idx AS '대여번호', m.Names AS '대여회원', " +
+                                  "       t.Names AS '장르', " +
+                                  "       b.Names AS '대여책제목', b.ISBN, " +
+                                  "       r.rentalDate AS '대여일' " +
+                                  "  FROM rentaltbl AS r " +
+                                  " INNER JOIN membertbl AS m " +
+                                  "    ON r.memberIdx = m.Idx " +
+                                  " INNER JOIN bookstbl AS b " +
+                                  "    ON r.bookIdx = b.Idx " +
+                                  " INNER JOIN divtbl AS t " +
+                                  "    ON b.division = t.division ";
                 SqlCommand cmd = new SqlCommand(strQuery, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(strQuery, conn);
                 DataSet ds = new DataSet();
-                adapter.Fill(ds, "divtbl");
+                adapter.Fill(ds, "rentaltbl");
 
-                GrdDivTbl.DataSource = ds;
-                GrdDivTbl.DataMember = "divtbl";
+                GrdRentalTbl.DataSource = ds;
+                GrdRentalTbl.DataMember = "rentaltbl";
             }
 
             mode = "";
@@ -173,7 +183,7 @@ namespace BookRentalApp
         {
             if (e.RowIndex > -1)
             {
-                DataGridViewRow data = GrdDivTbl.Rows[e.RowIndex];
+                DataGridViewRow data = GrdRentalTbl.Rows[e.RowIndex];
                 TxtDivision.Text = data.Cells[0].Value.ToString();
                 TxtDivision.ReadOnly = true;
                 TxtNames.Text = data.Cells[1].Value.ToString();
@@ -181,9 +191,9 @@ namespace BookRentalApp
             }
         }
 
-        private void DivForm_Deactivate(object sender, EventArgs e)
+        private void RentalForm_Deactivate(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }
