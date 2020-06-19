@@ -38,10 +38,16 @@
             this.BtnSave = new MetroFramework.Controls.MetroButton();
             this.BtnNew = new MetroFramework.Controls.MetroButton();
             this.BtnDelete = new MetroFramework.Controls.MetroButton();
-            this.TxtNames = new MetroFramework.Controls.MetroTextBox();
-            this.TxtDivision = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.TxtIdx = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.CboMember = new MetroFramework.Controls.MetroComboBox();
+            this.DatRental = new MetroFramework.Controls.MetroDateTime();
+            this.TxtMember = new MetroFramework.Controls.MetroTextBox();
+            this.BtnSearch = new MetroFramework.Controls.MetroButton();
+            this.TxtMemberId = new MetroFramework.Controls.MetroTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -120,14 +126,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BtnSearch);
+            this.groupBox1.Controls.Add(this.DatRental);
+            this.groupBox1.Controls.Add(this.CboMember);
+            this.groupBox1.Controls.Add(this.metroLabel6);
+            this.groupBox1.Controls.Add(this.metroLabel4);
+            this.groupBox1.Controls.Add(this.TxtMemberId);
+            this.groupBox1.Controls.Add(this.TxtMember);
+            this.groupBox1.Controls.Add(this.TxtIdx);
+            this.groupBox1.Controls.Add(this.metroLabel2);
+            this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.BtnCancel);
             this.groupBox1.Controls.Add(this.BtnSave);
             this.groupBox1.Controls.Add(this.BtnNew);
             this.groupBox1.Controls.Add(this.BtnDelete);
-            this.groupBox1.Controls.Add(this.TxtNames);
-            this.groupBox1.Controls.Add(this.TxtDivision);
-            this.groupBox1.Controls.Add(this.metroLabel2);
-            this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(532, 496);
@@ -137,37 +149,37 @@
             // 
             // BtnCancel
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(427, 188);
+            this.BtnCancel.Location = new System.Drawing.Point(427, 230);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(87, 37);
-            this.BtnCancel.TabIndex = 6;
+            this.BtnCancel.TabIndex = 9;
             this.BtnCancel.Text = "취소";
             this.BtnCancel.UseSelectable = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(334, 188);
+            this.BtnSave.Location = new System.Drawing.Point(334, 230);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(87, 37);
-            this.BtnSave.TabIndex = 6;
+            this.BtnSave.TabIndex = 8;
             this.BtnSave.Text = "저장";
             this.BtnSave.UseSelectable = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnNew
             // 
-            this.BtnNew.Location = new System.Drawing.Point(241, 188);
+            this.BtnNew.Location = new System.Drawing.Point(241, 230);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(87, 37);
-            this.BtnNew.TabIndex = 6;
+            this.BtnNew.TabIndex = 7;
             this.BtnNew.Text = "신규";
             this.BtnNew.UseSelectable = true;
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnDelete
             // 
-            this.BtnDelete.Location = new System.Drawing.Point(148, 188);
+            this.BtnDelete.Location = new System.Drawing.Point(148, 230);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(87, 37);
             this.BtnDelete.TabIndex = 6;
@@ -175,85 +187,168 @@
             this.BtnDelete.UseSelectable = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // TxtNames
+            // metroLabel6
+            // 
+            this.metroLabel6.Location = new System.Drawing.Point(30, 140);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(79, 19);
+            this.metroLabel6.TabIndex = 16;
+            this.metroLabel6.Text = "대여일";
+            this.metroLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.Location = new System.Drawing.Point(30, 106);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(79, 19);
+            this.metroLabel4.TabIndex = 18;
+            this.metroLabel4.Text = "대여책제목";
+            this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TxtIdx
             // 
             // 
             // 
             // 
-            this.TxtNames.CustomButton.Image = null;
-            this.TxtNames.CustomButton.Location = new System.Drawing.Point(298, 1);
-            this.TxtNames.CustomButton.Name = "";
-            this.TxtNames.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.TxtNames.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtNames.CustomButton.TabIndex = 1;
-            this.TxtNames.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TxtNames.CustomButton.UseSelectable = true;
-            this.TxtNames.CustomButton.Visible = false;
-            this.TxtNames.Lines = new string[0];
-            this.TxtNames.Location = new System.Drawing.Point(103, 76);
-            this.TxtNames.MaxLength = 32767;
-            this.TxtNames.Name = "TxtNames";
-            this.TxtNames.PasswordChar = '\0';
-            this.TxtNames.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtNames.SelectedText = "";
-            this.TxtNames.SelectionLength = 0;
-            this.TxtNames.SelectionStart = 0;
-            this.TxtNames.ShortcutsEnabled = true;
-            this.TxtNames.Size = new System.Drawing.Size(320, 23);
-            this.TxtNames.TabIndex = 1;
-            this.TxtNames.UseSelectable = true;
-            this.TxtNames.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TxtNames.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.TxtNames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNames_KeyPress);
-            // 
-            // TxtDivision
-            // 
-            // 
-            // 
-            // 
-            this.TxtDivision.CustomButton.Image = null;
-            this.TxtDivision.CustomButton.Location = new System.Drawing.Point(298, 1);
-            this.TxtDivision.CustomButton.Name = "";
-            this.TxtDivision.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.TxtDivision.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtDivision.CustomButton.TabIndex = 1;
-            this.TxtDivision.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TxtDivision.CustomButton.UseSelectable = true;
-            this.TxtDivision.CustomButton.Visible = false;
-            this.TxtDivision.Lines = new string[0];
-            this.TxtDivision.Location = new System.Drawing.Point(103, 47);
-            this.TxtDivision.MaxLength = 32767;
-            this.TxtDivision.Name = "TxtDivision";
-            this.TxtDivision.PasswordChar = '\0';
-            this.TxtDivision.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtDivision.SelectedText = "";
-            this.TxtDivision.SelectionLength = 0;
-            this.TxtDivision.SelectionStart = 0;
-            this.TxtDivision.ShortcutsEnabled = true;
-            this.TxtDivision.Size = new System.Drawing.Size(320, 23);
-            this.TxtDivision.TabIndex = 0;
-            this.TxtDivision.UseSelectable = true;
-            this.TxtDivision.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TxtDivision.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.TxtDivision.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDivision_KeyPress);
+            this.TxtIdx.CustomButton.Image = null;
+            this.TxtIdx.CustomButton.Location = new System.Drawing.Point(298, 1);
+            this.TxtIdx.CustomButton.Name = "";
+            this.TxtIdx.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.TxtIdx.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtIdx.CustomButton.TabIndex = 1;
+            this.TxtIdx.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtIdx.CustomButton.UseSelectable = true;
+            this.TxtIdx.CustomButton.Visible = false;
+            this.TxtIdx.Lines = new string[0];
+            this.TxtIdx.Location = new System.Drawing.Point(116, 35);
+            this.TxtIdx.MaxLength = 32767;
+            this.TxtIdx.Name = "TxtIdx";
+            this.TxtIdx.PasswordChar = '\0';
+            this.TxtIdx.ReadOnly = true;
+            this.TxtIdx.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtIdx.SelectedText = "";
+            this.TxtIdx.SelectionLength = 0;
+            this.TxtIdx.SelectionStart = 0;
+            this.TxtIdx.ShortcutsEnabled = true;
+            this.TxtIdx.Size = new System.Drawing.Size(320, 23);
+            this.TxtIdx.TabIndex = 0;
+            this.TxtIdx.UseSelectable = true;
+            this.TxtIdx.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtIdx.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel2
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(60, 80);
+            this.metroLabel2.Location = new System.Drawing.Point(30, 68);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(37, 19);
-            this.metroLabel2.TabIndex = 5;
-            this.metroLabel2.Text = "이름";
+            this.metroLabel2.Size = new System.Drawing.Size(79, 19);
+            this.metroLabel2.TabIndex = 20;
+            this.metroLabel2.Text = "대여회원";
+            this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // metroLabel1
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(32, 51);
+            this.metroLabel1.Location = new System.Drawing.Point(30, 39);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(65, 19);
-            this.metroLabel1.TabIndex = 5;
-            this.metroLabel1.Text = "구분코드";
+            this.metroLabel1.Size = new System.Drawing.Size(79, 19);
+            this.metroLabel1.TabIndex = 21;
+            this.metroLabel1.Text = "대여번호";
+            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CboMember
+            // 
+            this.CboMember.FormattingEnabled = true;
+            this.CboMember.ItemHeight = 23;
+            this.CboMember.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
+            this.CboMember.Location = new System.Drawing.Point(116, 64);
+            this.CboMember.Name = "CboMember";
+            this.CboMember.Size = new System.Drawing.Size(318, 29);
+            this.CboMember.TabIndex = 22;
+            this.CboMember.UseSelectable = true;
+            // 
+            // DatRental
+            // 
+            this.DatRental.Location = new System.Drawing.Point(116, 134);
+            this.DatRental.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DatRental.Name = "DatRental";
+            this.DatRental.Size = new System.Drawing.Size(318, 29);
+            this.DatRental.TabIndex = 23;
+            // 
+            // TxtMember
+            // 
+            // 
+            // 
+            // 
+            this.TxtMember.CustomButton.Image = null;
+            this.TxtMember.CustomButton.Location = new System.Drawing.Point(270, 1);
+            this.TxtMember.CustomButton.Name = "";
+            this.TxtMember.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.TxtMember.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtMember.CustomButton.TabIndex = 1;
+            this.TxtMember.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtMember.CustomButton.UseSelectable = true;
+            this.TxtMember.CustomButton.Visible = false;
+            this.TxtMember.Lines = new string[0];
+            this.TxtMember.Location = new System.Drawing.Point(116, 102);
+            this.TxtMember.MaxLength = 32767;
+            this.TxtMember.Name = "TxtMember";
+            this.TxtMember.PasswordChar = '\0';
+            this.TxtMember.ReadOnly = true;
+            this.TxtMember.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtMember.SelectedText = "";
+            this.TxtMember.SelectionLength = 0;
+            this.TxtMember.SelectionStart = 0;
+            this.TxtMember.ShortcutsEnabled = true;
+            this.TxtMember.Size = new System.Drawing.Size(292, 23);
+            this.TxtMember.TabIndex = 0;
+            this.TxtMember.UseSelectable = true;
+            this.TxtMember.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtMember.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // BtnSearch
+            // 
+            this.BtnSearch.Location = new System.Drawing.Point(414, 102);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(22, 23);
+            this.BtnSearch.TabIndex = 24;
+            this.BtnSearch.Text = "...";
+            this.BtnSearch.UseSelectable = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
+            // TxtMemberId
+            // 
+            // 
+            // 
+            // 
+            this.TxtMemberId.CustomButton.Image = null;
+            this.TxtMemberId.CustomButton.Location = new System.Drawing.Point(18, 1);
+            this.TxtMemberId.CustomButton.Name = "";
+            this.TxtMemberId.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.TxtMemberId.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtMemberId.CustomButton.TabIndex = 1;
+            this.TxtMemberId.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtMemberId.CustomButton.UseSelectable = true;
+            this.TxtMemberId.CustomButton.Visible = false;
+            this.TxtMemberId.Lines = new string[0];
+            this.TxtMemberId.Location = new System.Drawing.Point(442, 102);
+            this.TxtMemberId.MaxLength = 32767;
+            this.TxtMemberId.Name = "TxtMemberId";
+            this.TxtMemberId.PasswordChar = '\0';
+            this.TxtMemberId.ReadOnly = true;
+            this.TxtMemberId.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtMemberId.SelectedText = "";
+            this.TxtMemberId.SelectionLength = 0;
+            this.TxtMemberId.SelectionStart = 0;
+            this.TxtMemberId.ShortcutsEnabled = true;
+            this.TxtMemberId.Size = new System.Drawing.Size(40, 23);
+            this.TxtMemberId.TabIndex = 0;
+            this.TxtMemberId.UseSelectable = true;
+            this.TxtMemberId.Visible = false;
+            this.TxtMemberId.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtMemberId.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // RentalForm
             // 
@@ -272,7 +367,6 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrdRentalTbl)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -285,10 +379,16 @@
         private MetroFramework.Controls.MetroButton BtnSave;
         private MetroFramework.Controls.MetroButton BtnNew;
         private MetroFramework.Controls.MetroButton BtnDelete;
-        private MetroFramework.Controls.MetroTextBox TxtNames;
-        private MetroFramework.Controls.MetroTextBox TxtDivision;
+        private MetroFramework.Controls.MetroGrid GrdRentalTbl;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroTextBox TxtIdx;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroGrid GrdRentalTbl;
+        private MetroFramework.Controls.MetroComboBox CboMember;
+        private MetroFramework.Controls.MetroDateTime DatRental;
+        private MetroFramework.Controls.MetroTextBox TxtMember;
+        private MetroFramework.Controls.MetroButton BtnSearch;
+        private MetroFramework.Controls.MetroTextBox TxtMemberId;
     }
 }

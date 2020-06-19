@@ -15,7 +15,6 @@ namespace BookRentalApp
 {
     public partial class RentalForm : MetroFramework.Forms.MetroForm
     {
-        string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
         public RentalForm()
@@ -28,11 +27,33 @@ namespace BookRentalApp
             // TODO: 이 코드는 데이터를 'bookrentalshopDataSet.divtbl' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
             //this.divtblTableAdapter.Fill(this.bookrentalshopDataSet.divtbl);
             UpdateData();
+            UpdateCombo();
+        }
+
+        private void UpdateCombo()
+        {
+            // 회원번호
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
+            {
+                conn.Open();
+                string strQuery = "SELECT Idx, Names FROM dbo.membertbl ";
+                SqlCommand cmd = new SqlCommand(strQuery, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Dictionary<string, string> temps = new Dictionary<string, string>();
+                while (reader.Read())
+                {
+                    temps.Add(reader[0].ToString(), reader[1].ToString());
+                }
+                CboMember.DataSource = new BindingSource(temps, null);
+                CboMember.DisplayMember = "Value";
+                CboMember.ValueMember = "Key";
+            }
         }
 
         private void UpdateData()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 conn.Open();
                 string strQuery = "SELECT r.idx AS '대여번호', m.Names AS '대여회원', " +
@@ -60,13 +81,13 @@ namespace BookRentalApp
 
         private void UpdateProcess()
         {
-            if (string.IsNullOrEmpty(TxtDivision.Text) || string.IsNullOrEmpty(TxtNames.Text))
-            {
-                MetroMessageBox.Show(this, "빈값은 넣을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (string.IsNullOrEmpty(TxtDivision.Text) || string.IsNullOrEmpty(TxtNames.Text))
+            //{
+            //    MetroMessageBox.Show(this, "빈값은 넣을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
@@ -83,12 +104,12 @@ namespace BookRentalApp
                         cmd.CommandText = "INSERT INTO divtbl VALUES (@division, @names)";
                     }
 
-                    SqlParameter paramName = new SqlParameter("@names", SqlDbType.NVarChar, 45);
-                    paramName.Value = (TxtNames.Text);
-                    cmd.Parameters.Add(paramName);
-                    SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
-                    cmd.Parameters.Add(paramDiv);
+                    //SqlParameter paramName = new SqlParameter("@names", SqlDbType.NVarChar, 45);
+                    //paramName.Value = (TxtNames.Text);
+                    //cmd.Parameters.Add(paramName);
+                    //SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
+                    //paramDiv.Value = TxtDivision.Text;
+                    //cmd.Parameters.Add(paramDiv);
                     
 
                     cmd.ExecuteNonQuery();
@@ -101,22 +122,6 @@ namespace BookRentalApp
                 {
                     UpdateData();
                 }
-            }
-        }
-
-        private void TxtDivision_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                TxtNames.Focus();
-            }
-        }
-
-        private void TxtNames_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                BtnSave_Click(sender, new EventArgs());
             }
         }
 
@@ -135,7 +140,7 @@ namespace BookRentalApp
 
         private void DeleteProcess()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
@@ -143,9 +148,6 @@ namespace BookRentalApp
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "DELETE divtbl WHERE Division = @division";
-                    SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtDivision.Text;
-                    cmd.Parameters.Add(paramDiv);
 
 
                     cmd.ExecuteNonQuery();
@@ -163,8 +165,6 @@ namespace BookRentalApp
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
             mode = "INSERT";
         }
 
@@ -175,8 +175,6 @@ namespace BookRentalApp
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            TxtDivision.Text = TxtNames.Text = string.Empty;
-            TxtDivision.ReadOnly = false;
         }
 
         private void GrdDivTbl_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -184,9 +182,6 @@ namespace BookRentalApp
             if (e.RowIndex > -1)
             {
                 DataGridViewRow data = GrdRentalTbl.Rows[e.RowIndex];
-                TxtDivision.Text = data.Cells[0].Value.ToString();
-                TxtDivision.ReadOnly = true;
-                TxtNames.Text = data.Cells[1].Value.ToString();
                 mode = "UPDATE";
             }
         }
@@ -194,6 +189,15 @@ namespace BookRentalApp
         private void RentalForm_Deactivate(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+            SearchMemForm form = new SearchMemForm();
+            if (form.ShowDialog() == DialogResult.Yes)
+            {
+                MetroMessageBox.Show(this, "YES");
+            }
         }
     }
 }

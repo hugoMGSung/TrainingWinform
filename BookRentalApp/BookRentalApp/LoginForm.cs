@@ -11,8 +11,6 @@ namespace BookRentalApp
 {
     public partial class LoginForm : MetroFramework.Forms.MetroForm
     {
-        string strConn = "Data Source=127.0.0.1;Initial Catalog=BookRentalshopDB;Persist Security Info=True;User ID=sa;Password=p@ssw0rd!";
-
         public LoginForm()
         {
             InitializeComponent();
@@ -42,7 +40,7 @@ namespace BookRentalApp
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(strConn))
+                using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand();
