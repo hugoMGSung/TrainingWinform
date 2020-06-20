@@ -27,10 +27,16 @@ namespace BookRentalApp
             // TODO: 이 코드는 데이터를 'bookrentalshopDataSet.divtbl' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
             //this.divtblTableAdapter.Fill(this.bookrentalshopDataSet.divtbl);
             UpdateData();
-            UpdateCombo();
+            UpdateComboMember();
+            UpdateComboBooks();
+
+            DatRental.Format = DateTimePickerFormat.Custom;
+            DatRental.CustomFormat = " ";
+            DatReturn.Format = DateTimePickerFormat.Custom;
+            DatReturn.CustomFormat = " ";
         }
 
-        private void UpdateCombo()
+        private void UpdateComboMember()
         {
             // 회원번호
             using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
@@ -48,6 +54,34 @@ namespace BookRentalApp
                 CboMember.DataSource = new BindingSource(temps, null);
                 CboMember.DisplayMember = "Value";
                 CboMember.ValueMember = "Key";
+                CboMember.SelectedIndex = -1;
+            }
+        }
+
+        private void UpdateComboBooks()
+        {
+            // 회원번호
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
+            {
+                conn.Open();
+                // 두번째 책 관련 쿼리 만들기. 단 현재 빌려서 아직 반환을 안한 책은 제외 하기 위해 조인쿼리 사용
+                string strQuery = "SELECT b.Idx, b.Names FROM bookstbl AS b " +
+                                  "  LEFT OUTER JOIN rentaltbl AS r " +
+                                  "    ON b.idx = r.bookIdx " +
+                                  " WHERE r.Idx IS NULL " +
+                                  "    OR (r.Idx IS NOT NULL AND r.rentalDate IS NOT NULL AND r.returnDate IS NOT NULL) ";
+                SqlCommand cmd = new SqlCommand(strQuery, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Dictionary<string, string> temps = new Dictionary<string, string>();
+                while (reader.Read())
+                {
+                    temps.Add(reader[0].ToString(), reader[1].ToString());
+                }
+                CboBooks.DataSource = new BindingSource(temps, null);
+                CboBooks.DisplayMember = "Value";
+                CboBooks.ValueMember = "Key";
+                CboBooks.SelectedIndex = -1;
             }
         }
 
@@ -191,13 +225,5 @@ namespace BookRentalApp
             this.Close();
         }
 
-        private void BtnSearch_Click(object sender, EventArgs e)
-        {
-            SearchMemForm form = new SearchMemForm();
-            if (form.ShowDialog() == DialogResult.Yes)
-            {
-                MetroMessageBox.Show(this, "YES");
-            }
-        }
     }
 }

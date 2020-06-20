@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GrdRentalTbl = new MetroFramework.Controls.MetroGrid();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BtnCancel = new MetroFramework.Controls.MetroButton();
-            this.BtnSave = new MetroFramework.Controls.MetroButton();
-            this.BtnNew = new MetroFramework.Controls.MetroButton();
-            this.BtnDelete = new MetroFramework.Controls.MetroButton();
+            this.DatRental = new MetroFramework.Controls.MetroDateTime();
+            this.CboMember = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.TxtIdx = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.CboMember = new MetroFramework.Controls.MetroComboBox();
-            this.DatRental = new MetroFramework.Controls.MetroDateTime();
-            this.TxtMember = new MetroFramework.Controls.MetroTextBox();
-            this.BtnSearch = new MetroFramework.Controls.MetroButton();
-            this.TxtMemberId = new MetroFramework.Controls.MetroTextBox();
+            this.BtnCancel = new MetroFramework.Controls.MetroButton();
+            this.BtnSave = new MetroFramework.Controls.MetroButton();
+            this.BtnNew = new MetroFramework.Controls.MetroButton();
+            this.BtnDelete = new MetroFramework.Controls.MetroButton();
+            this.CboBooks = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.DatReturn = new MetroFramework.Controls.MetroDateTime();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,23 +83,23 @@
             this.GrdRentalTbl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GrdRentalTbl.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.GrdRentalTbl.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrdRentalTbl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrdRentalTbl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GrdRentalTbl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GrdRentalTbl.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GrdRentalTbl.DefaultCellStyle = dataGridViewCellStyle2;
             this.GrdRentalTbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrdRentalTbl.EnableHeadersVisualStyles = false;
             this.GrdRentalTbl.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -108,14 +108,14 @@
             this.GrdRentalTbl.Name = "GrdRentalTbl";
             this.GrdRentalTbl.ReadOnly = true;
             this.GrdRentalTbl.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrdRentalTbl.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrdRentalTbl.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GrdRentalTbl.RowHeadersWidth = 45;
             this.GrdRentalTbl.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.GrdRentalTbl.RowTemplate.Height = 24;
@@ -126,13 +126,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.BtnSearch);
+            this.groupBox1.Controls.Add(this.DatReturn);
             this.groupBox1.Controls.Add(this.DatRental);
+            this.groupBox1.Controls.Add(this.CboBooks);
+            this.groupBox1.Controls.Add(this.metroLabel3);
             this.groupBox1.Controls.Add(this.CboMember);
             this.groupBox1.Controls.Add(this.metroLabel6);
             this.groupBox1.Controls.Add(this.metroLabel4);
-            this.groupBox1.Controls.Add(this.TxtMemberId);
-            this.groupBox1.Controls.Add(this.TxtMember);
             this.groupBox1.Controls.Add(this.TxtIdx);
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.metroLabel1);
@@ -147,45 +147,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "상세";
             // 
-            // BtnCancel
+            // DatRental
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(427, 230);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(87, 37);
-            this.BtnCancel.TabIndex = 9;
-            this.BtnCancel.Text = "취소";
-            this.BtnCancel.UseSelectable = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.DatRental.Location = new System.Drawing.Point(116, 134);
+            this.DatRental.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DatRental.Name = "DatRental";
+            this.DatRental.Size = new System.Drawing.Size(318, 29);
+            this.DatRental.TabIndex = 3;
             // 
-            // BtnSave
+            // CboMember
             // 
-            this.BtnSave.Location = new System.Drawing.Point(334, 230);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(87, 37);
-            this.BtnSave.TabIndex = 8;
-            this.BtnSave.Text = "저장";
-            this.BtnSave.UseSelectable = true;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Location = new System.Drawing.Point(241, 230);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(87, 37);
-            this.BtnNew.TabIndex = 7;
-            this.BtnNew.Text = "신규";
-            this.BtnNew.UseSelectable = true;
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Location = new System.Drawing.Point(148, 230);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(87, 37);
-            this.BtnDelete.TabIndex = 6;
-            this.BtnDelete.Text = "삭제";
-            this.BtnDelete.UseSelectable = true;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.CboMember.FormattingEnabled = true;
+            this.CboMember.ItemHeight = 23;
+            this.CboMember.Location = new System.Drawing.Point(116, 64);
+            this.CboMember.Name = "CboMember";
+            this.CboMember.Size = new System.Drawing.Size(318, 29);
+            this.CboMember.TabIndex = 1;
+            this.CboMember.UseSelectable = true;
             // 
             // metroLabel6
             // 
@@ -254,101 +232,73 @@
             this.metroLabel1.Text = "대여번호";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // CboMember
+            // BtnCancel
             // 
-            this.CboMember.FormattingEnabled = true;
-            this.CboMember.ItemHeight = 23;
-            this.CboMember.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D"});
-            this.CboMember.Location = new System.Drawing.Point(116, 64);
-            this.CboMember.Name = "CboMember";
-            this.CboMember.Size = new System.Drawing.Size(318, 29);
-            this.CboMember.TabIndex = 22;
-            this.CboMember.UseSelectable = true;
+            this.BtnCancel.Location = new System.Drawing.Point(427, 230);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(87, 37);
+            this.BtnCancel.TabIndex = 9;
+            this.BtnCancel.Text = "취소";
+            this.BtnCancel.UseSelectable = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // DatRental
+            // BtnSave
             // 
-            this.DatRental.Location = new System.Drawing.Point(116, 134);
-            this.DatRental.MinimumSize = new System.Drawing.Size(0, 29);
-            this.DatRental.Name = "DatRental";
-            this.DatRental.Size = new System.Drawing.Size(318, 29);
-            this.DatRental.TabIndex = 23;
+            this.BtnSave.Location = new System.Drawing.Point(334, 230);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(87, 37);
+            this.BtnSave.TabIndex = 8;
+            this.BtnSave.Text = "저장";
+            this.BtnSave.UseSelectable = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // TxtMember
+            // BtnNew
             // 
+            this.BtnNew.Location = new System.Drawing.Point(241, 230);
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(87, 37);
+            this.BtnNew.TabIndex = 7;
+            this.BtnNew.Text = "신규";
+            this.BtnNew.UseSelectable = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
+            // BtnDelete
             // 
+            this.BtnDelete.Location = new System.Drawing.Point(148, 230);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(87, 37);
+            this.BtnDelete.TabIndex = 6;
+            this.BtnDelete.Text = "삭제";
+            this.BtnDelete.UseSelectable = true;
+            this.BtnDelete.Visible = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            this.TxtMember.CustomButton.Image = null;
-            this.TxtMember.CustomButton.Location = new System.Drawing.Point(270, 1);
-            this.TxtMember.CustomButton.Name = "";
-            this.TxtMember.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.TxtMember.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtMember.CustomButton.TabIndex = 1;
-            this.TxtMember.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TxtMember.CustomButton.UseSelectable = true;
-            this.TxtMember.CustomButton.Visible = false;
-            this.TxtMember.Lines = new string[0];
-            this.TxtMember.Location = new System.Drawing.Point(116, 102);
-            this.TxtMember.MaxLength = 32767;
-            this.TxtMember.Name = "TxtMember";
-            this.TxtMember.PasswordChar = '\0';
-            this.TxtMember.ReadOnly = true;
-            this.TxtMember.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtMember.SelectedText = "";
-            this.TxtMember.SelectionLength = 0;
-            this.TxtMember.SelectionStart = 0;
-            this.TxtMember.ShortcutsEnabled = true;
-            this.TxtMember.Size = new System.Drawing.Size(292, 23);
-            this.TxtMember.TabIndex = 0;
-            this.TxtMember.UseSelectable = true;
-            this.TxtMember.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TxtMember.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // CboBooks
             // 
-            // BtnSearch
+            this.CboBooks.FormattingEnabled = true;
+            this.CboBooks.ItemHeight = 23;
+            this.CboBooks.Location = new System.Drawing.Point(116, 99);
+            this.CboBooks.Name = "CboBooks";
+            this.CboBooks.Size = new System.Drawing.Size(318, 29);
+            this.CboBooks.TabIndex = 2;
+            this.CboBooks.UseSelectable = true;
             // 
-            this.BtnSearch.Location = new System.Drawing.Point(414, 102);
-            this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(22, 23);
-            this.BtnSearch.TabIndex = 24;
-            this.BtnSearch.Text = "...";
-            this.BtnSearch.UseSelectable = true;
-            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // metroLabel3
             // 
-            // TxtMemberId
+            this.metroLabel3.Location = new System.Drawing.Point(30, 175);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(79, 19);
+            this.metroLabel3.TabIndex = 16;
+            this.metroLabel3.Text = "반납일";
+            this.metroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // DatReturn
             // 
-            // 
-            // 
-            this.TxtMemberId.CustomButton.Image = null;
-            this.TxtMemberId.CustomButton.Location = new System.Drawing.Point(18, 1);
-            this.TxtMemberId.CustomButton.Name = "";
-            this.TxtMemberId.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.TxtMemberId.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtMemberId.CustomButton.TabIndex = 1;
-            this.TxtMemberId.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TxtMemberId.CustomButton.UseSelectable = true;
-            this.TxtMemberId.CustomButton.Visible = false;
-            this.TxtMemberId.Lines = new string[0];
-            this.TxtMemberId.Location = new System.Drawing.Point(442, 102);
-            this.TxtMemberId.MaxLength = 32767;
-            this.TxtMemberId.Name = "TxtMemberId";
-            this.TxtMemberId.PasswordChar = '\0';
-            this.TxtMemberId.ReadOnly = true;
-            this.TxtMemberId.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TxtMemberId.SelectedText = "";
-            this.TxtMemberId.SelectionLength = 0;
-            this.TxtMemberId.SelectionStart = 0;
-            this.TxtMemberId.ShortcutsEnabled = true;
-            this.TxtMemberId.Size = new System.Drawing.Size(40, 23);
-            this.TxtMemberId.TabIndex = 0;
-            this.TxtMemberId.UseSelectable = true;
-            this.TxtMemberId.Visible = false;
-            this.TxtMemberId.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TxtMemberId.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.DatReturn.Location = new System.Drawing.Point(116, 169);
+            this.DatReturn.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DatReturn.Name = "DatReturn";
+            this.DatReturn.Size = new System.Drawing.Size(318, 29);
+            this.DatReturn.TabIndex = 4;
             // 
             // RentalForm
             // 
@@ -387,8 +337,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroComboBox CboMember;
         private MetroFramework.Controls.MetroDateTime DatRental;
-        private MetroFramework.Controls.MetroTextBox TxtMember;
-        private MetroFramework.Controls.MetroButton BtnSearch;
-        private MetroFramework.Controls.MetroTextBox TxtMemberId;
+        private MetroFramework.Controls.MetroComboBox CboBooks;
+        private MetroFramework.Controls.MetroDateTime DatReturn;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
     }
 }
