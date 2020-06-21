@@ -1,14 +1,8 @@
 ﻿using MetroFramework;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BookRentalApp
@@ -30,10 +24,11 @@ namespace BookRentalApp
             UpdateComboMember();
             UpdateComboBooks();
 
-            DatRental.Format = DateTimePickerFormat.Custom;
             DatRental.CustomFormat = " ";
-            DatReturn.Format = DateTimePickerFormat.Custom;
+            DatRental.Format = DateTimePickerFormat.Custom;
+
             DatReturn.CustomFormat = " ";
+            DatReturn.Format = DateTimePickerFormat.Custom;
         }
 
         private void UpdateComboMember()
@@ -65,11 +60,11 @@ namespace BookRentalApp
             {
                 conn.Open();
                 // 두번째 책 관련 쿼리 만들기. 단 현재 빌려서 아직 반환을 안한 책은 제외 하기 위해 조인쿼리 사용
-                string strQuery = "SELECT b.Idx, b.Names FROM bookstbl AS b " +
+                string strQuery = "SELECT DISTINCT b.Idx, b.Names FROM bookstbl AS b " +
                                   "  LEFT OUTER JOIN rentaltbl AS r " +
-                                  "    ON b.idx = r.bookIdx " +
-                                  " WHERE r.Idx IS NULL " +
-                                  "    OR (r.Idx IS NOT NULL AND r.rentalDate IS NOT NULL AND r.returnDate IS NOT NULL) ";
+                                  "    ON b.idx = r.bookIdx ";
+                                  //" WHERE r.Idx IS NULL " +
+                                  //"    OR (r.Idx IS NOT NULL AND r.rentalDate IS NOT NULL AND r.returnDate IS NOT NULL) ";
                 SqlCommand cmd = new SqlCommand(strQuery, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -93,7 +88,10 @@ namespace BookRentalApp
                 string strQuery = "SELECT r.idx AS '대여번호', m.Names AS '대여회원', " +
                                   "       t.Names AS '장르', " +
                                   "       b.Names AS '대여책제목', b.ISBN, " +
-                                  "       r.rentalDate AS '대여일' " +
+                                  "       r.rentalDate AS '대여일', " +
+                                  "       r.returnDate AS '반납일', " +
+                                  "       m.Idx AS 'mIdx', " +
+                                  "       b.Idx AS 'bIdx' " +
                                   "  FROM rentaltbl AS r " +
                                   " INNER JOIN membertbl AS m " +
                                   "    ON r.memberIdx = m.Idx " +
@@ -110,7 +108,17 @@ namespace BookRentalApp
                 GrdRentalTbl.DataMember = "rentaltbl";
             }
 
+            SetColumnHeaders();
             mode = "";
+        }
+
+        private void SetColumnHeaders()
+        {
+            DataGridViewColumn column = GrdRentalTbl.Columns[7];
+            column.Visible = false;
+            column = GrdRentalTbl.Columns[8];
+            column.Visible = false;
+
         }
 
         private void UpdateProcess()
@@ -131,58 +139,35 @@ namespace BookRentalApp
 
                     if (mode == "UPDATE")
                     {
-                        cmd.CommandText = "UPDATE divtbl SET Names = @names WHERE Division = @division";
+                        cmd.CommandText = "UPDATE dbo.rentaltbl " +
+                                          "   SET memberIdx = @memberIdx " +
+                                          "     , bookIdx = @bookIdx " +
+                                          "     , rentalDate = @rentalDate " +
+                                          "     , returnDate = @returnDate " +
+                                          " WHERE Idx = @Idx ";
                     }
                     else if (mode == "INSERT")
                     {
-                        cmd.CommandText = "INSERT INTO divtbl VALUES (@division, @names)";
+                        cmd.CommandText = " ";
                     }
 
-                    //SqlParameter paramName = new SqlParameter("@names", SqlDbType.NVarChar, 45);
-                    //paramName.Value = (TxtNames.Text);
-                    //cmd.Parameters.Add(paramName);
-                    //SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    //paramDiv.Value = TxtDivision.Text;
-                    //cmd.Parameters.Add(paramDiv);
-                    
+                    SqlParameter parmMemberIdx = new SqlParameter("@memberIdx", SqlDbType.Int);
+                    parmMemberIdx.Value = (CboMember.SelectedValue);
+                    cmd.Parameters.Add(parmMemberIdx);
+                    SqlParameter parmBookIdx = new SqlParameter("@bookIdx", SqlDbType.Int);
+                    parmBookIdx.Value = (CboBooks.SelectedValue);
+                    cmd.Parameters.Add(parmBookIdx);
 
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MetroMessageBox.Show(this, "오류가 발생했습니다", "오류");
-                }
-                finally
-                {
-                    UpdateData();
-                }
-            }
-        }
+                    SqlParameter parmRentalDate = new SqlParameter("@rentalDate", SqlDbType.DateTime);
+                    parmRentalDate.Value = DatRental.Value;
+                    cmd.Parameters.Add(parmRentalDate);
+                    SqlParameter parmReturnDate = new SqlParameter("@returnDate", SqlDbType.DateTime);
+                    parmReturnDate.Value = DatReturn.Value;
+                    cmd.Parameters.Add(parmReturnDate);
 
-        private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            if (mode != "UPDATE")
-            {
-                MetroMessageBox.Show(this, "삭제할 데이터를 선택하세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else
-            {
-                DeleteProcess();
-            }
-        }
-
-        private void DeleteProcess()
-        {
-            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
-            {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "DELETE divtbl WHERE Division = @division";
-
+                    SqlParameter parmIdx = new SqlParameter("@Idx", SqlDbType.Int);
+                    parmIdx.Value = TxtIdx.Text;
+                    cmd.Parameters.Add(parmIdx);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -213,9 +198,26 @@ namespace BookRentalApp
 
         private void GrdDivTbl_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            DatReturn.CustomFormat = " ";
+            DatReturn.Format = DateTimePickerFormat.Custom;
+
             if (e.RowIndex > -1)
             {
                 DataGridViewRow data = GrdRentalTbl.Rows[e.RowIndex];
+                TxtIdx.Text = data.Cells[0].Value.ToString();
+                CboMember.SelectedIndex = CboMember.FindString(data.Cells[1].Value.ToString());
+                CboBooks.SelectedIndex = CboBooks.FindString(data.Cells[3].Value.ToString());
+                DatRental.CustomFormat = "yyyy-MM-dd";
+                DatRental.Format = DateTimePickerFormat.Custom;
+                DatRental.Value = DateTime.Parse(data.Cells[5].Value.ToString());
+
+                if (!string.IsNullOrEmpty(data.Cells[6].Value.ToString()))
+                {
+                    DatReturn.CustomFormat = "yyyy-MM-dd";
+                    DatReturn.Format = DateTimePickerFormat.Custom;
+                    DatReturn.Value = DateTime.Parse(data.Cells[6].Value.ToString());
+                }
+
                 mode = "UPDATE";
             }
         }
@@ -225,5 +227,16 @@ namespace BookRentalApp
             this.Close();
         }
 
+        private void DatRental_ValueChanged(object sender, EventArgs e)
+        {
+            DatRental.CustomFormat = "yyyy-MM-dd";
+            DatRental.Format = DateTimePickerFormat.Custom;
+        }
+
+        private void DatReturn_ValueChanged(object sender, EventArgs e)
+        {
+            DatReturn.CustomFormat = "yyyy-MM-dd";
+            DatReturn.Format = DateTimePickerFormat.Custom;
+        }
     }
 }
