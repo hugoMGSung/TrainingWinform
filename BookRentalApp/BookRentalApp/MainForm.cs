@@ -22,29 +22,31 @@ namespace BookRentalApp
         {
         }
 
+        private void InitFormControl(Form form, String strTitle)
+        {
+            form.MdiParent = this;
+            form.Text = strTitle;
+            form.Dock = DockStyle.Fill;
+            form.Show();
+            form.WindowState = FormWindowState.Maximized;
+        }
+
         private void MnuItemCodeMng_Click(object sender, EventArgs e)
         {
-            DivForm form = new DivForm();
-            form.MdiParent = this;
-            form.Text = "구분코드관리";
-            form.Dock = DockStyle.Fill;
+            CloseForms();
 
-            try
-            {
-                form.Show();
-                form.WindowState = FormWindowState.Maximized;
-            }
-            catch (Exception)
-            {
-            }
-            
+            DivForm form = new DivForm();
+            InitFormControl(form, "구분코드 관리");
         }
+
+
 
         private void MainForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             if (MetroFramework.MetroMessageBox.Show(this, "종료하겠습니까?", "종료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) 
                 == DialogResult.Yes)
             {
+                CloseForms();
                 e.Cancel = false;
                 Environment.Exit(0);
             } else
@@ -53,38 +55,27 @@ namespace BookRentalApp
             }
         }
 
+        private void CloseForms()
+        {
+            foreach (Form item in this.MdiChildren)
+            {
+                item.Close();
+            }
+        }
+
         private void MnuItemMemerMng_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MemberForm form = new MemberForm();
-                form.MdiParent = this;
-                form.Text = "회원관리";
-                form.Dock = DockStyle.Fill;
-                form.Show();
-                form.WindowState = FormWindowState.Maximized;
-            }
-            catch (Exception)
-            {
-            }
-            
+            CloseForms();
+
+            MemberForm form = new MemberForm();
+            InitFormControl(form, "회원관리");
         }
 
         private void MnuItemRentalMng_Click(object sender, EventArgs e)
         {
-            try
-            {
-                RentalForm form = new RentalForm();
-                form.MdiParent = this;
-                form.Text = "대여관리";
-                form.Dock = DockStyle.Fill;
-                form.Show();
-                form.WindowState = FormWindowState.Maximized;
-            }
-            catch (Exception)
-            {
-            }
-            
+            CloseForms();
+            RentalForm form = new RentalForm();
+            InitFormControl(form, "대여관리");
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
@@ -99,18 +90,9 @@ namespace BookRentalApp
 
         private void MnuItemLogin_Click(object sender, EventArgs e)
         {
-            try
-            {
-                UserForm form = new UserForm();
-                form.MdiParent = this;
-                form.Text = "사용자관리";
-                form.Dock = DockStyle.Fill;
-                form.Show();
-                form.WindowState = FormWindowState.Maximized;
-            }
-            catch (Exception)
-            {
-            }
+            CloseForms();
+            UserForm form = new UserForm();
+            InitFormControl(form, "사용자관리");
         }
     }
 }

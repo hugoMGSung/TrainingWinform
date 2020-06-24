@@ -1,21 +1,13 @@
 ﻿using MetroFramework;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BookRentalApp
 {
     public partial class MemberForm : MetroFramework.Forms.MetroForm
     {
-        string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
         public MemberForm()
@@ -32,7 +24,7 @@ namespace BookRentalApp
 
         private void UpdateData()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 conn.Open();
                 string strQuery = "SELECT Idx, Names, Levels, Addr, Mobile, Email FROM membertbl ";
@@ -74,13 +66,15 @@ namespace BookRentalApp
 
         private void UpdateProcess()
         {
-            if (string.IsNullOrEmpty(TxtIdx.Text) || string.IsNullOrEmpty(TxtNames.Text))
+            if (string.IsNullOrEmpty(TxtNames.Text) || string.IsNullOrEmpty(TxtAddr.Text) 
+                || string.IsNullOrEmpty(TxtMobile.Text) || string.IsNullOrEmpty(TxtEmail.Text)
+                || CboLevels.SelectedIndex < 0)
             {
                 MetroMessageBox.Show(this, "빈값은 넣을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
@@ -90,20 +84,47 @@ namespace BookRentalApp
 
                     if (mode == "UPDATE")
                     {
-                        cmd.CommandText = "UPDATE divtbl SET Names = @names WHERE Division = @division";
+                        cmd.CommandText = "UPDATE dbo.membertbl " +
+                                          "   SET Names = @Names " + // -- varchar(45),>
+                                          "     , Levels = @Levels " + // -- char(1),>
+                                          "     , Addr = @Addr " +  //-- varchar(100),>
+                                          "     , Mobile = @Mobile " + // -- varchar(13),>
+                                          "     , Email = @Email " +  // -- varchar(50),>
+                                          " WHERE Idx = @Idx ";
                     }
                     else if (mode == "INSERT")
                     {
-                        cmd.CommandText = "INSERT INTO divtbl VALUES (@division, @names)";
+                        cmd.CommandText = "INSERT INTO " +
+                                          "  membertbl (Names, Levels, Addr, Mobile, Email) " +
+                                          "     VALUES (@Names, @Levels, @Addr, @Mobile, @Email) ";
                     }
 
-                    SqlParameter paramName = new SqlParameter("@names", SqlDbType.NVarChar, 45);
-                    paramName.Value = (TxtNames.Text);
-                    cmd.Parameters.Add(paramName);
-                    SqlParameter paramDiv = new SqlParameter("@division", SqlDbType.VarChar);
-                    paramDiv.Value = TxtIdx.Text;
-                    cmd.Parameters.Add(paramDiv);
-                    
+                    SqlParameter paramNames = new SqlParameter("@Names", SqlDbType.VarChar, 45);
+                    paramNames.Value = (TxtNames.Text);
+                    cmd.Parameters.Add(paramNames);
+
+                    SqlParameter paramLevels = new SqlParameter("@Levels", SqlDbType.Char, 1);
+                    paramLevels.Value = CboLevels.SelectedItem;
+                    cmd.Parameters.Add(paramLevels);
+
+                    SqlParameter paramAddr = new SqlParameter("@Addr", SqlDbType.VarChar, 100);
+                    paramAddr.Value = TxtAddr.Text;
+                    cmd.Parameters.Add(paramAddr);
+
+                    SqlParameter paramMobile = new SqlParameter("@Mobile", SqlDbType.VarChar, 13);
+                    paramMobile.Value = TxtMobile.Text;
+                    cmd.Parameters.Add(paramMobile);
+
+                    SqlParameter paramEmail = new SqlParameter("@Email", SqlDbType.VarChar, 50);
+                    paramEmail.Value = TxtEmail.Text;
+                    cmd.Parameters.Add(paramEmail);
+
+                    if (mode == "UPDATE")
+                    {
+                        SqlParameter paramIdx = new SqlParameter("@Idx", SqlDbType.Int);
+                        paramIdx.Value = TxtIdx.Text;
+                        cmd.Parameters.Add(paramIdx);
+                    }
 
                     cmd.ExecuteNonQuery();
                 }
@@ -120,10 +141,7 @@ namespace BookRentalApp
 
         private void TxtDivision_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
-            {
-                TxtNames.Focus();
-            }
+
         }
 
         private void TxtNames_KeyPress(object sender, KeyPressEventArgs e)
@@ -149,7 +167,7 @@ namespace BookRentalApp
 
         private void DeleteProcess()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
@@ -177,8 +195,8 @@ namespace BookRentalApp
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            TxtIdx.Text = TxtNames.Text = string.Empty;
-            TxtIdx.ReadOnly = false;
+            TxtIdx.Text = TxtNames.Text = TxtAddr.Text = TxtMobile.Text = TxtEmail.Text = string.Empty;
+            CboLevels.Text = "";
             mode = "INSERT";
         }
 
@@ -214,34 +232,5 @@ namespace BookRentalApp
             this.Close();
         }
 
-        private void metroLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroLabel4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroLabel5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroLabel6_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

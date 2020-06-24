@@ -11,6 +11,9 @@ namespace BookRentalApp
     {
         public static string USERID = string.Empty;  // 사용자 아이디
 
+        public static string CONNECTIONSTRING =
+            "Data Source=127.0.0.1;Initial Catalog=BookRentalshopDB;Persist Security Info=True;User ID=sa;Password=p@ssw0rd!";
+
         public static string GetMd5Hash(MD5 md5Hash, string input)
         { 
             // Convert the input string to a byte array and compute the hash. 

@@ -15,7 +15,6 @@ namespace BookRentalApp
 {
     public partial class DivForm : MetroFramework.Forms.MetroForm
     {
-        string strConn = "Data Source=127.0.0.1;Initial Catalog=bookrentalshop;Persist Security Info=True;User ID=sa;Password=mssql_p@ssw0rd!";
         string mode = "";
 
         public DivForm()
@@ -32,7 +31,7 @@ namespace BookRentalApp
 
         private void UpdateData()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 conn.Open();
                 string strQuery = "SELECT Division, Names FROM divtbl ";
@@ -56,7 +55,7 @@ namespace BookRentalApp
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
@@ -125,7 +124,7 @@ namespace BookRentalApp
 
         private void DeleteProcess()
         {
-            using (SqlConnection conn = new SqlConnection(strConn))
+            using (SqlConnection conn = new SqlConnection(Commons.CONNECTIONSTRING))
             {
                 try
                 {
